@@ -1,0 +1,9 @@
+[{
+    "file": "the downpour intro.md",
+    "hash": "intro",
+    "animation": {
+        "svg": "clouds.svg",
+        "duration": 2000,
+        "style": "width:400px;height:300px;opacity:0.5;float:right;margin-right:20px;"
+    }
+}]
