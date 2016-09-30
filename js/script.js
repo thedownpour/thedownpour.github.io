@@ -10,7 +10,6 @@ $(document).ready(function() {
     });
 
 });
-var parts = 3;
 
 function init(config) {
     var current = document.location.hash;
