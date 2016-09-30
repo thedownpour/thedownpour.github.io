@@ -17,6 +17,9 @@ function init(config) {
     var current_id = -1;
     if (current != "") {
         var page = findPageByHash(config,current);
+        if(!page){
+          page=config[0];
+        }
         current_id = config.indexOf(page);
         loadPage(page, {
             "scroll": false
