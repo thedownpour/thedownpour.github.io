@@ -41,6 +41,7 @@ function init(config) {
     var lastScrollPosition = $(window).scrollTop();
     $(document).scroll(function(e) {
         var tillBottom = $(document).height() - ($(window).scrollTop() + $(window).height());
+        var tillUp = $(window).scrollTop() - $("#content").offset().top;
         var scrollingDown = (lastScrollPosition < $(window).scrollTop());
         lastScrollPosition = $(window).scrollTop();
         if ((tillBottom <= 100) && scrollingDown) {
@@ -50,9 +51,10 @@ function init(config) {
                     "scroll": false
                 });
             }
-        } else {
-            if (current_id - 1 > 0) {
-                current_id += -1;
+        }
+        if((tillUp <= 100) && !scrollingDown) {
+            if (current_id >= 1) {
+                current_id = current_id-1;
                 loadPage(config[current_id], {
                     "scroll": false,
                     "next": false
