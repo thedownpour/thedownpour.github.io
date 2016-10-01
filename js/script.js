@@ -66,7 +66,7 @@ function init(config) {
 }
 
 function loadPage(page, options = {}) {
-  ga('send', 'event', 'page', 'loaded', 'name', page.name);
+  ga('send', 'event', 'page', 'loaded', page.hash);
   $("#loader").show();
     if (options.changeHash === undefined) {
         options.changeHash = true;
