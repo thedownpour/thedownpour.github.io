@@ -43,7 +43,7 @@ function init(config) {
         var tillBottom = $(document).height() - ($(window).scrollTop() + $(window).height());
         var scrollingDown = (lastScrollPosition < $(window).scrollTop());
         lastScrollPosition = $(window).scrollTop();
-        if ((tillBottom < 100) && scrollingDown) {
+        if ((tillBottom <= 100) && scrollingDown) {
             if (current_id + 1 < config.length) {
                 current_id++;
                 loadPage(config[current_id], {
@@ -67,7 +67,7 @@ function init(config) {
 
 function loadPage(page, options = {}) {
   ga('send', 'event', 'page', 'loaded', page.hash);
-  $("#loader").show();
+
     if (options.changeHash === undefined) {
         options.changeHash = true;
     }
@@ -86,6 +86,7 @@ function loadPage(page, options = {}) {
         } else {
             $("#content").prepend('<div id="' + page.hash + '"></div>');
         }
+        $("#loader").show();
         jQuery.ajax({
             url: "/book/" + page.file,
             success: function(result) {

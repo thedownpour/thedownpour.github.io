@@ -6,4 +6,20 @@
         "duration": 2000,
         "style": "width:400px;height:300px;opacity:0.5;float:right;margin-right:20px;"
     }
+},{
+    "file": "chapter I - Megan White .md",
+    "hash": "chapter-I-Megan-White",
+    "animation": {
+        "svg": "bird.svg",
+        "duration": 2000,
+        "style": "width:400px;height:300px;opacity:0.5;float:left;"
+    }
+},{
+    "file": "ethan.md",
+    "hash": "ethan",
+    "animation": {
+        "svg": "polisher.svg",
+        "duration": 500,
+        "style": "width:400px;height:300px;opacity:0.5;float:right;margin-left:20px;"
+    }
 }]
