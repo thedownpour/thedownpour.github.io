@@ -26,3 +26,6 @@ I made some good friends along the way, Humans among them, and together we decid
 I will be honest and direct: I need you all to get ready for what it is to come, and the truth is that there is no return from the point we reached: Soon our world will be a post-apocalyptic landscape, as the gears that will shatter society is already spinning in a too fast pace to be stopped, my efforts here are not to try to prevent the disaster, but to prepare you all for it, trust me is not a choice, as in fact I am your only hope of learning anything in time.
 
 This is from now on the book of your lives, your survival guide and your best shot of making through the reality that is about to rain down in your world like no storm you ever seen…welcome to The Downpour folks…the clouds are already gathered.
+
+__Jack’s Note:__
+_I have a friend, someone that has been suffering for almost as long as I am, and one of the few that accepted share the risk of letting all you guys know about the many things we have to say, there is a lot to explain and of course I do not feel like do it alone, to be honest my time and current pace of life does not allow me to do it alone, anyways…soon this friend of mine will be adding notes and answering questions around here, her name is Megan, and I wish you good luck folks, she is not the sweetest of things – cheers_
