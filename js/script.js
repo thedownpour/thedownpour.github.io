@@ -10,17 +10,21 @@ $(document).ready(function() {
     });
 
 });
+var current_id = -1;
 
 function init(config) {
     var current = document.location.hash;
-    var current_id = -1;
+
     if (current != "") {
-        var page = findPageByHash(config,current);
-        if(!page){
-          page=config[0];
+        var page = findPageByHash(config, current);
+        if (!page.page) {
+            page = config[0];
+            current_id = 0;
+        } else {
+            current_id = page.id;
         }
-        current_id = config.indexOf(page);
-        loadPage(page, {
+
+        loadPage(page.page, {
             "scroll": false
         });
         if (current_id > 0) {
@@ -32,13 +36,13 @@ function init(config) {
         }
         setTimeout(function() {
             $('html,body').animate({
-                scrollTop: $("#" + page.hash).offset().top
+                scrollTop: $("#" + page.page.hash).offset().top
             }, 300, 'swing')
         }, 100);
 
-        current_id++;
     }
     var lastScrollPosition = $(window).scrollTop();
+
     $(document).scroll(function(e) {
         var tillBottom = $(document).height() - ($(window).scrollTop() + $(window).height());
         var tillUp = $(window).scrollTop() - $("#content").offset().top;
@@ -46,19 +50,23 @@ function init(config) {
         lastScrollPosition = $(window).scrollTop();
         if ((tillBottom <= 100) && scrollingDown) {
             if (current_id + 1 < config.length) {
-                current_id++;
-                loadPage(config[current_id], {
+
+                loadPage(config[current_id + 1], {
                     "scroll": false
                 });
             }
         }
-        if((tillUp <= 100) && !scrollingDown) {
-            if (current_id >= 1) {
-                current_id = current_id-1;
-                loadPage(config[current_id], {
+        if ((tillUp <= 100) && !scrollingDown) {
+            var first_loaded_page_hash = $("#content>div:first").attr("id");
+            var page = findPageByHash(config, first_loaded_page_hash);
+            if ((page.id - 1) >= 0) {
+
+                loadPage(config[page.id - 1], {
                     "scroll": false,
-                    "next": false
+                    "next": false,
+                    "changeHash": false
                 });
+
             }
         }
     });
@@ -67,8 +75,10 @@ function init(config) {
 
 }
 
-function loadPage(page, options = {}) {
-  ga('send', 'event', 'page', 'loaded', page.hash);
+function loadPage(page, options) {
+
+
+    ga('send', 'event', 'page', 'loaded', page.hash);
 
     if (options.changeHash === undefined) {
         options.changeHash = true;
@@ -95,15 +105,26 @@ function loadPage(page, options = {}) {
                 var converter = new showdown.Converter();
                 var html = converter.makeHtml(result);
                 $("#" + page.hash).html(html);
-                if(page.animation!==undefined){
-                  $("#" + page.hash).prepend('<div id="animation-'+page.hash+'" style="'+page.animation.style+'"></div>');
-                  var vivus=new Vivus('animation-'+page.hash, {duration: page.animation.duration, file: '/svg/'+page.animation.svg, type:'oneByOne'}, finishedDrawing);
+                if (page.animation !== undefined) {
+                    $("#" + page.hash).prepend('<div class="animation" id="animation-' + page.hash + '" style="'+ page.animation.style + '"></div>');
+                    var vivus = new Vivus('animation-' + page.hash, {
+                        duration: page.animation.duration,
+                        file: '/svg/' + page.animation.svg,
+                        type: 'oneByOne'
+                    }, finishedDrawing);
                 }
+                $("#" + page.hash).fadeIn();
                 $("#loader").fadeOut();
-                if (options.scroll) {
-                    $('html,body').animate({
+           if (options.scroll) {
+                    $('body').animate({
                         scrollTop: $("#" + page.hash).offset().top
                     }, 300, 'swing');
+                }
+                if (options.next) {
+                    current_id++;
+                } else {
+                    current_id += -1;
+                    $('body').scrollTop($("#" + page.hash).offset().top+$("#"+page.hash).height());
                 }
             }
         });
@@ -111,17 +132,24 @@ function loadPage(page, options = {}) {
 
 
 }
-function finishedDrawing(){
+
+function finishedDrawing() {
 
 }
-function findPageByHash(array,hash){
-  var page="";
 
-  array.forEach(function(el){
-    if(el.hash==hash.replace("#","")){
-      page=el;
+function findPageByHash(arr, hash, id) {
+    var page = {
+        "id": -1
+    };
+    for (var i = 0; i < arr.length; i++) {
+        var el = arr[i];
+
+        if (el.hash == hash.replace("#", "")) {
+            page.page = el;
+            page.id = i;
+        }
+
 
     }
-  });
-  return page;
+    return page;
 }

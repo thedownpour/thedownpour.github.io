@@ -25,6 +25,7 @@ body {
     text-align: center;
     background: grey url(../img/bg.jpg) 50% 50% no-repeat;
     background-size: cover;
+    overflow: hidden;
 }
 
 .main-headline {
@@ -59,6 +60,7 @@ blockquote cite{
 }
 #content>div{
   position: relative;
+  min-height: 100px;
 }
 #loader{
   padding:20px;
@@ -75,4 +77,33 @@ a{
 }
 a:hover{
   color:black;
+}
+@media(min-width:1024px){
+  #content{
+    width:980px;
+    margin:0 auto;
+  }
+
+}
+
+@media(max-width:600px){
+  #content,.footer{
+    padding:20px;
+  }
+  .main-headline{
+    font-size:40px;
+  }
+  .intro{
+    width:90%;
+    padding:20px 5%;
+  }
+  .animation{
+    width:100%!important;
+    max-width:100%!important;
+    float:none!important
+    margin:0!important;
+    position: relative!important;
+    height:50%!important;
+  }
+
 }
