@@ -29,10 +29,17 @@
                 <p>If this never happens try using a modern browser</p>
     </noindex>
     <div class="footer">
+        <p>
+            <a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/TheDownpourBook">
+        Follow @TheDownpourBook</a>
+
+            <a class="github-button" href="https://github.com/thedownpour" aria-label="Follow @thedownpour on GitHub">Follow @thedownpour</a>
+        </p>
         <p>If you feel like you can mail to <a href="mailto:thedownpourbook@gmail.com">thedownpourbook@gmail.com</a></p>
-        <p>You can track book updates at <a href="https://twitter.com/TheDownpourBook">Twitter</a> or <a href="https://github.com/thedownpour/thedownpour.github.io">GitHub</a></p>
-        <p><script data-cfasync="false" type="text/javascript" src="//filamentapp.s3.amazonaws.com/f55d0144cdfa1970c914ceda6172fb52.js" async="async"></script>
-</p>
+
+      <p>
+            <script data-cfasync="false" type="text/javascript" src="//filamentapp.s3.amazonaws.com/f55d0144cdfa1970c914ceda6172fb52.js" async="async"></script>
+        </p>
     </div>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="https://cdn.rawgit.com/showdownjs/showdown/1.4.3/dist/showdown.min.js"></script>
@@ -54,6 +61,26 @@
         ga('create', 'UA-84998936-1', 'auto');
         ga('send', 'pageview');
     </script>
+    <script>
+        window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+
+            t._e = [];
+            t.ready = function(f) {
+                t._e.push(f);
+            };
+
+            return t;
+        }(document, "script", "twitter-wjs"));
+    </script>
+
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 
 </html>
