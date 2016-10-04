@@ -5,16 +5,17 @@ $(document).ready(function() {
         console.log(request);
         console.log("-------------------------------------------------");
     });
-    $.get("config.json", function(data) {
+    $.get("/config.json", function(data) {
         init(data);
     });
 
 });
 var current_id = -1;
+var lastScrollTop = 0;
+var loading = false;
 
 function init(config) {
     var current = document.location.hash;
-
     if (current != "") {
         var page = findPageByHash(config, current);
         if (!page.page) {
@@ -23,9 +24,9 @@ function init(config) {
         } else {
             current_id = page.id;
         }
-
         loadPage(page.page, {
-            "scroll": false
+            "scroll": false,
+            "first": true
         });
         if (current_id > 0) {
             loadPage(config[current_id - 1], {
@@ -34,39 +35,45 @@ function init(config) {
                 "next": false
             });
         }
-        setTimeout(function() {
-            $('html,body').animate({
-                scrollTop: $("#" + page.page.hash).offset().top
-            }, 300, 'swing')
-        }, 100);
 
+        $(document).on("pageLoaded", function(event, page, options) {
+            if (options.first) {
+                $('html,body').animate({
+                    scrollTop: $("#" + page.hash).offset().top
+                }, 300, 'swing');
+            }
+        });
+
+
+    } else {
+        loadPage(config[0], {
+            "changeHash": false,
+            "scroll": false
+        });
     }
-    var lastScrollPosition = $(window).scrollTop();
+
 
     $(document).scroll(function(e) {
-        var tillBottom = $(document).height() - ($(window).scrollTop() + $(window).height());
-        var tillUp = $(window).scrollTop() - $("#content").offset().top;
-        var scrollingDown = (lastScrollPosition < $(window).scrollTop());
-        lastScrollPosition = $(window).scrollTop();
-        if ((tillBottom <= 100) && scrollingDown) {
-            if (current_id + 1 < config.length) {
-
-                loadPage(config[current_id + 1], {
-                    "scroll": false
-                });
+        if (!loading) {
+            if (isCloseToEdge("bottom", e)) {
+                if (current_id + 1 < config.length) {
+                    loadPage(config[current_id + 1], {
+                        "scroll": false,
+                        "changeHash": true
+                    });
+                }
             }
-        }
-        if ((tillUp <= 100) && !scrollingDown) {
-            var first_loaded_page_hash = $("#content>div:first").attr("id");
-            var page = findPageByHash(config, first_loaded_page_hash);
-            if ((page.id - 1) >= 0) {
+            if (isCloseToEdge("top", e)) {
+                var first_loaded_page_hash = $("#content>div:first").attr("id");
+                var page = findPageByHash(config, first_loaded_page_hash);
+                if ((page.id - 1) >= 0) {
 
-                loadPage(config[page.id - 1], {
-                    "scroll": false,
-                    "next": false,
-                    "changeHash": false
-                });
+                    loadPage(config[page.id - 1], {
+                        "scroll": false,
+                        "next": false
+                    });
 
+                }
             }
         }
     });
@@ -76,8 +83,7 @@ function init(config) {
 }
 
 function loadPage(page, options) {
-
-
+    loading = true;
     ga('send', 'event', 'page', 'loaded', page.hash);
 
     if (options.changeHash === undefined) {
@@ -90,7 +96,11 @@ function loadPage(page, options) {
         options.scroll = true;
     }
     if (options.changeHash) {
-        document.location.hash = "#" + page.hash;
+        if (history.pushState) {
+            history.pushState(null, null, "#" + page.hash);
+        } else {
+            location.hash = "#" + page.hash;
+        }
     }
     if ($("#" + page.hash).size() == 0) {
         if (options.next) {
@@ -106,16 +116,17 @@ function loadPage(page, options) {
                 var html = converter.makeHtml(result);
                 $("#" + page.hash).html(html);
                 if (page.animation !== undefined) {
-                    $("#" + page.hash).prepend('<div class="animation" id="animation-' + page.hash + '" style="'+ page.animation.style + '"></div>');
+                    $("#" + page.hash).prepend('<div class="animation" id="animation-' + page.hash + '" style="' + page.animation.style + '"></div>');
                     var vivus = new Vivus('animation-' + page.hash, {
                         duration: page.animation.duration,
                         file: '/svg/' + page.animation.svg,
                         type: 'oneByOne'
                     }, finishedDrawing);
+                    $('#animation-' + page.hash).fadeIn();
                 }
                 $("#" + page.hash).fadeIn();
                 $("#loader").fadeOut();
-           if (options.scroll) {
+                if (options.scroll) {
                     $('body').animate({
                         scrollTop: $("#" + page.hash).offset().top
                     }, 300, 'swing');
@@ -124,20 +135,23 @@ function loadPage(page, options) {
                     current_id++;
                 } else {
                     current_id += -1;
-                    $('body').scrollTop($("#" + page.hash).offset().top+$("#"+page.hash).height());
+                    $('body').scrollTop($("#" + page.hash).offset().top + $("#" + page.hash).height());
                 }
+                loading = false;
+                $("#" + page.hash).slideDown(500);
+                $(document).trigger("pageLoaded", [page, options]);
             }
         });
     }
-
-
 }
 
 function finishedDrawing() {
 
 }
 
-function findPageByHash(arr, hash, id) {
+
+/* @covered findPageByHash*/
+function findPageByHash(arr, hash) {
     var page = {
         "id": -1
     };
@@ -153,3 +167,28 @@ function findPageByHash(arr, hash, id) {
     }
     return page;
 }
+
+
+
+function isCloseToEdge(side, e) {
+        e.preventDefault()
+        var headingTo;
+        var toEdge;
+        var st = $(window).scrollTop();
+        if (st > lastScrollTop) {
+            headingTo = "bottom";
+            toEdge = $(window).scrollBottom();
+        } else {
+            headingTo = "top";
+            toEdge = st - $(".pusher").height();
+        }
+        lastScrollTop = st;
+
+        return ((headingTo == side) && (toEdge <= 100));
+    }
+
+
+
+$.fn.scrollBottom = function() {
+    return $(document).height() - this.scrollTop() - this.height();
+};

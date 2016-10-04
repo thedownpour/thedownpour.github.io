@@ -22,4 +22,20 @@
         "duration": 500,
         "style": "width:400px;height:300px;opacity:0.5;float:right;margin-left:20px;"
     }
+},{
+    "file": "chapter II - Ethan Levasque.md",
+    "hash": "chapter-II-ethan-levasque",
+    "animation": {
+        "svg": "tripod.svg",
+        "duration": 1000,
+        "style": "width:300px;height:600px;opacity:0.3;float:left;"
+    }
+},{
+    "file": "chapter II part 2.md",
+    "hash": "chapter-II-part-2",
+    "animation": {
+        "svg": "hands.svg",
+        "duration": 1000,
+        "style": "width:300px;height:300px;opacity:0.4;float:right;"
+    }
 }]
