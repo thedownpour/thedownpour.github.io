@@ -4,7 +4,7 @@
     "animation": {
         "svg": "clouds.svg",
         "duration": 2000,
-        "style": "width:400px;height:300px;opacity:0.5;float:right;margin-right:20px;"
+        "style": "width:29.1246em;height:19.4164em;opacity:0.5;float:right;margin-right:1.61803em;"
     }
 },{
     "file": "chapter I - Megan White .md",
@@ -12,7 +12,7 @@
     "animation": {
         "svg": "bird.svg",
         "duration": 2000,
-        "style": "width:400px;height:300px;opacity:0.5;float:left;"
+        "style": "width:29.1246em;height:19.4164em;opacity:0.5;float:left;"
     }
 },{
     "file": "ethan.md",
@@ -20,7 +20,7 @@
     "animation": {
         "svg": "polisher.svg",
         "duration": 500,
-        "style": "width:400px;height:300px;opacity:0.5;float:right;margin-left:20px;"
+        "style": "width:29.1246em;height:19.4164em;opacity:0.5;float:right;margin-left:1.61803em;"
     }
 },{
     "file": "chapter II - Ethan Levasque.md",
@@ -28,7 +28,7 @@
     "animation": {
         "svg": "tripod.svg",
         "duration": 1000,
-        "style": "width:300px;height:600px;opacity:0.3;float:left;"
+        "style": "width:19.4164em;height:38.8328em;opacity:0.3;float:left;margin-right:1.61803em;"
     }
 },{
     "file": "chapter II part 2.md",
@@ -36,6 +36,6 @@
     "animation": {
         "svg": "hands.svg",
         "duration": 1000,
-        "style": "width:300px;height:300px;opacity:0.4;float:right;"
+        "style": "width:19.4164em;height:19.4164em;opacity:0.4;float:right;margin-left:1.61803em;"
     }
 }]

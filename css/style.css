@@ -1,117 +1,160 @@
 @import url(https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700);
+/* line 7, ../sass/style.scss */
 body, html {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
+/* line 12, ../sass/style.scss */
 .pusher, body, html {
-    min-height: 100%
+  min-height: 100%;
 }
 
+/* line 16, ../sass/style.scss */
 .page, .pusher, body, html {
-    height: 100%
+  height: 100%;
 }
 
+/* line 22, ../sass/style.scss */
 body {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 14px;
-    line-height: 1.618;
-    color: #333;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 14px;
+  line-height: 1.61803em;
+  color: #333;
 }
 
+/* line 29, ../sass/style.scss */
 .page {
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    background: grey url(../img/bg.jpg) 50% 50% no-repeat;
-    background-size: cover;
-    overflow: hidden;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: grey url(../img/bg.jpg) 50% 50% no-repeat;
+  background-size: cover;
+  overflow: hidden;
 }
-.animation{
-  overflow:hidden;
-  opacity:0;
+
+/* line 37, ../sass/style.scss */
+.animation {
+  overflow: hidden;
+  opacity: 0;
 }
-.animation svg{
-  max-width:100%;
-  max-height:100%;
+
+/* line 41, ../sass/style.scss */
+.animation svg {
+  max-width: 100%;
+  max-height: 100%;
 }
+
+/* line 45, ../sass/style.scss */
 .main-headline {
-    color: #fff;
-    text-align: center;
-    font-size: 60px;
-    text-transform: uppercase;
-    border-bottom: 1px solid #fff;
-    border-top: 1px solid #fff;
-    display: inline-block;
-    margin-top: 20%;
-    background: rgba(29, 26, 26, 0.11);
-    line-height: 1.25;
+  color: #fff;
+  text-align: center;
+  font-size: 5em;
+  line-height: 1.29443em;
+  text-transform: uppercase;
+  border-bottom: 1px solid #fff;
+  border-top: 1px solid #fff;
+  display: inline-block;
+  margin-top: 3.23607em;
+  background: rgba(29, 26, 26, 0.11);
 }
 
+/* line 58, ../sass/style.scss */
 .intro {
-    color: #fff;
-    width: 500px;
-    padding: 20px;
-    margin: 40px auto;
-    background: rgba(29, 26, 26, 0.11);
-    text-align: left;
-}
-blockquote cite{
-  margin:10px;
-  text-align:right;
-  display:block;
+  color: #fff;
+  width: 42.06888em;
+  margin-top: 1.61803em;
+  padding-top: 0em;
+  padding-bottom: 0em;
+  margin-bottom: 1.61803em;
+  margin: 4.8541em auto;
+  background: rgba(29, 26, 26, 0.11);
+  text-align: left;
 }
 
-#content {
-    padding: 20px 60px;
+/* line 66, ../sass/style.scss */
+blockquote cite {
+  margin-top: 1.61803em;
+  padding-top: 0em;
+  padding-bottom: 0em;
+  margin-bottom: 1.61803em;
+  text-align: right;
+  display: block;
 }
-#content>div{
+
+/* line 71, ../sass/style.scss */
+p {
+  margin-top: 1.61803em;
+  padding-top: 0em;
+  padding-bottom: 0em;
+  margin-bottom: 1.61803em;
+}
+
+/* line 74, ../sass/style.scss */
+.wrapper {
+  padding-top: 1.61803em;
+  padding-bottom: 1.61803em;
+}
+
+/* line 77, ../sass/style.scss */
+#content > div {
   position: relative;
-  min-height: 100px;
-  display:none;
+  min-height: 9.7082em;
+  display: none;
 }
-#loader{
-  padding:20px;
-  text-align:center;
-  font-weight:bold;
+
+/* line 82, ../sass/style.scss */
+#loader {
+  padding-top: 1.61803em;
+  padding-bottom: 1.61803em;
+  text-align: center;
+  font-weight: bold;
   font-style: italic;
 }
-.footer{
-  padding: 20px 60px;
-  background:#e5e5e5;
-}
-a{
-  color:#222;
-}
-a:hover{
-  color:black;
-}
-@media(min-width:1024px){
-  #content{
-    width:980px;
-    margin:0 auto;
-  }
 
+/* line 88, ../sass/style.scss */
+.footer {
+  padding-top: 1.61803em;
+  padding-bottom: 1.61803em;
+  background: #e5e5e5;
 }
 
-@media(max-width:600px){
-  #content,.footer{
-    padding:20px;
+/* line 92, ../sass/style.scss */
+a {
+  color: #222;
+}
+
+/* line 95, ../sass/style.scss */
+a:hover {
+  color: black;
+}
+
+@media (min-width: 1024px) {
+  /* line 99, ../sass/style.scss */
+  .wrapper {
+    width: 980px;
+    margin: 0 auto;
   }
-  .main-headline{
-    font-size:40px;
-  }
-  .intro{
-    width:90%;
-    padding:20px 5%;
-  }
-  .animation{
-    width:100%!important;
-    max-width:100%!important;
-    float:none!important
-    margin:0!important;
-    position: relative!important;
-    height:50%!important;
+}
+@media (max-width: 600px) {
+  /* line 107, ../sass/style.scss */
+  .main-headline {
+    font-size: 3.33333em;
+    line-height: 1.45623em;
   }
 
+  /* line 110, ../sass/style.scss */
+  .intro {
+    width: 90%;
+  }
+
+  /* line 113, ../sass/style.scss */
+  .animation {
+    width: 100% !important;
+    max-width: 100% !important;
+    float: none !important;
+    margin: 0 !important;
+    position: relative !important;
+    height: 50% !important;
+  }
 }

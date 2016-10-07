@@ -5,14 +5,15 @@ $(document).ready(function() {
         console.log(request);
         console.log("-------------------------------------------------");
     });
-    $.get("/config.json", function(data) {
+    $.get("/config.json?v=3", function(data) {
         init(data);
     });
 
 });
 var current_id = -1;
 var lastScrollTop = 0;
-var loading = false;
+var loading=false;
+
 
 function init(config) {
     var current = document.location.hash;
@@ -54,28 +55,32 @@ function init(config) {
 
 
     $(document).scroll(function(e) {
-        if (!loading) {
-            if (isCloseToEdge("bottom", e)) {
-                if (current_id + 1 < config.length) {
-                    loadPage(config[current_id + 1], {
-                        "scroll": false,
-                        "changeHash": true
-                    });
-                }
-            }
-            if (isCloseToEdge("top", e)) {
-                var first_loaded_page_hash = $("#content>div:first").attr("id");
-                var page = findPageByHash(config, first_loaded_page_hash);
-                if ((page.id - 1) >= 0) {
-
-                    loadPage(config[page.id - 1], {
-                        "scroll": false,
-                        "next": false
-                    });
-
-                }
+        if (loading) {
+            return false;
+        }
+        if (isCloseToEdge("bottom", e)) {
+            if (current_id + 1 < config.length) {
+                loadPage(config[current_id + 1], {
+                    "scroll": false,
+                    "changeHash": true
+                });
             }
         }
+
+        if (isCloseToEdge("top", e)) {
+            var first_loaded_page_hash = $("#content>div:first").attr("id");
+            var page = findPageByHash(config, first_loaded_page_hash);
+            if ((page.id - 1) >= 0) {
+
+                loadPage(config[page.id - 1], {
+                    "scroll": false,
+                    "next": false
+                });
+
+            }
+        }
+
+
     });
 
 
@@ -83,7 +88,7 @@ function init(config) {
 }
 
 function loadPage(page, options) {
-    loading = true;
+
     ga('send', 'event', 'page', 'loaded', page.hash);
 
     if (options.changeHash === undefined) {
@@ -109,12 +114,14 @@ function loadPage(page, options) {
             $("#content").prepend('<div id="' + page.hash + '"></div>');
         }
         $("#loader").show();
+        loading = true;
         jQuery.ajax({
             url: "/book/" + page.file,
             success: function(result) {
                 var converter = new showdown.Converter();
                 var html = converter.makeHtml(result);
                 $("#" + page.hash).html(html);
+                loading=false;
                 if (page.animation !== undefined) {
                     $("#" + page.hash).prepend('<div class="animation" id="animation-' + page.hash + '" style="' + page.animation.style + '"></div>');
                     var vivus = new Vivus('animation-' + page.hash, {
@@ -137,12 +144,15 @@ function loadPage(page, options) {
                     current_id += -1;
                     $('body').scrollTop($("#" + page.hash).offset().top + $("#" + page.hash).height());
                 }
-                loading = false;
+
                 $("#" + page.hash).slideDown(500);
+
                 $(document).trigger("pageLoaded", [page, options]);
             }
         });
-    }
+    }else{
+    loading=false;
+  }
 }
 
 function finishedDrawing() {
@@ -171,21 +181,21 @@ function findPageByHash(arr, hash) {
 
 
 function isCloseToEdge(side, e) {
-        e.preventDefault()
-        var headingTo;
-        var toEdge;
-        var st = $(window).scrollTop();
-        if (st > lastScrollTop) {
-            headingTo = "bottom";
-            toEdge = $(window).scrollBottom();
-        } else {
-            headingTo = "top";
-            toEdge = st - $(".pusher").height();
-        }
-        lastScrollTop = st;
-
-        return ((headingTo == side) && (toEdge <= 100));
+    e.preventDefault()
+    var headingTo;
+    var toEdge;
+    var st = $(window).scrollTop();
+    if (st > lastScrollTop) {
+        headingTo = "bottom";
+        toEdge = $(window).scrollBottom();
+    } else {
+        headingTo = "top";
+        toEdge = st - $(".pusher").height();
     }
+    lastScrollTop = st;
+
+    return ((headingTo == side) && (toEdge <= 100));
+}
 
 
 
