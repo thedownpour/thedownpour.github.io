@@ -1,0 +1,9 @@
+Anton and four other Second Born… they we’re all dead before even realizing the source of the attack, the non-Human bodies disappeared, they “do not exist” in your society, the cause of death of Anton (as your newspapers reported) was an accident with uncovered power lines while inspecting one of the tunnels…the coffin was sealed tight to hide the truth, his family convinced it was best this way, keep a memory of him alive and well instead of cold and dead…all this old bullshit…
+
+The Shades keep you all on the leash, they are the head of States of your countries, they are the “men behind the curtain” and they intend to remain so, kill is one of the measures they care the less, it’s a cheap solution; My intention is not to scare, but I need you all to get used to what and who they are, and you all might stand a chance…
+
+When the Rain starts to fall hard they will have some moments of vulnerability, and that is when we need to strike, we all…or they will control the wastes this world is doomed to become the same way they control your “flourishing” society, open your eyes…open the eyes of the people you care; do not let them get lost like I let Meg slip away…
+
+I will be back…when I can – If I take too long, keep in mind I secured an electronic address, feels weird but, mail me.
+
+\- *Jack* \-

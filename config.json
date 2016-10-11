@@ -38,4 +38,20 @@
         "duration": 1000,
         "style": "width:19.4164em;height:19.4164em;opacity:0.4;float:right;margin-left:1.61803em;"
     }
+},{
+    "file": "Jacks note 2.md",
+    "hash": "jacks-note-2",
+    "animation": {
+        "svg": "noface.svg",
+        "duration": 2000,
+        "style": "width:19.4164em;height:19.4164em;opacity:0.3;float:left;margin-right:1.61803em;"
+    }
+},{
+    "file": "Jacks note 2-2.md",
+    "hash": "jacks-note-2-2",
+    "animation": {
+        "svg": "metro.svg",
+        "duration": 1000,
+        "style": "width:19.4164em;height:19.4164em;opacity:0.4;float:right;margin-left:1.61803em;"
+    }
 }]
